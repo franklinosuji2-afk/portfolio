@@ -879,6 +879,192 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--green2); }
 
+  /* CV MODAL */
+  .cv-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(2,12,5,0.97);
+    backdrop-filter: blur(16px);
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .cv-modal.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .cv-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+    background: rgba(2,12,5,0.98);
+    border-bottom: 1px solid var(--border);
+  }
+  .cv-toolbar-left {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+  .cv-toolbar-left span { color: var(--green); }
+  .cv-toolbar-btns { display: flex; gap: 12px; }
+  .cv-btn-close {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+  .cv-btn-close:hover { color: var(--green); border-color: var(--green); }
+  .cv-btn-pdf {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--bg);
+    background: var(--green);
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .cv-btn-pdf:hover { background: #fff; box-shadow: 0 0 20px var(--green); }
+  .cv-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 40px 60px;
+  }
+  .cv-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: start;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .cv-name {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 4px;
+    line-height: 1.1;
+    text-shadow: 0 0 40px rgba(0,255,106,0.2);
+  }
+  .cv-role-tag {
+    font-family: var(--display);
+    font-size: 0.75rem;
+    color: var(--green);
+    letter-spacing: 4px;
+    margin-top: 8px;
+    text-shadow: 0 0 10px var(--green);
+  }
+  .cv-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: right;
+  }
+  .cv-contact-item {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .cv-contact-item a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .cv-contact-item a:hover { color: var(--green); }
+  .cv-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+    align-items: start;
+  }
+  .cv-sec { margin-bottom: 36px; }
+  .cv-sec-title {
+    font-family: var(--display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .cv-summary-text { font-size: 0.95rem; color: var(--text); line-height: 1.8; }
+  .cv-exp-block { margin-bottom: 28px; }
+  .cv-exp-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .cv-exp-title { font-family: var(--display); font-size: 0.8rem; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .cv-exp-date { font-family: var(--mono); font-size: 0.6rem; color: var(--green2); letter-spacing: 1px; white-space: nowrap; }
+  .cv-exp-company { font-family: var(--mono); font-size: 0.62rem; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 1px; }
+  .cv-exp-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .cv-exp-list li { font-size: 0.88rem; color: var(--text-dim); padding-left: 16px; position: relative; line-height: 1.6; }
+  .cv-exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--green); font-size: 0.6rem; top: 2px; }
+  .cv-exp-list li strong { color: var(--text); font-weight: 600; }
+  .cv-edu-block { margin-bottom: 20px; }
+  .cv-edu-inst { font-family: var(--display); font-size: 0.7rem; font-weight: 700; color: #fff; letter-spacing: 1px; margin-bottom: 2px; }
+  .cv-edu-degree { font-size: 0.82rem; color: var(--text); margin-bottom: 2px; }
+  .cv-edu-grade { font-family: var(--mono); font-size: 0.6rem; color: var(--green); letter-spacing: 1px; margin-bottom: 2px; }
+  .cv-edu-date { font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim); letter-spacing: 1px; }
+  .cv-skill-group { margin-bottom: 16px; }
+  .cv-skill-group-name { font-family: var(--mono); font-size: 0.6rem; color: var(--green2); letter-spacing: 2px; margin-bottom: 8px; }
+  .cv-skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cv-skill-tag { font-family: var(--mono); font-size: 0.58rem; color: var(--green2); background: var(--green-dim); border: 1px solid rgba(0,255,106,0.15); padding: 3px 8px; }
+  .cv-cert-block { margin-bottom: 14px; }
+  .cv-cert-name { font-size: 0.85rem; color: var(--text); margin-bottom: 2px; }
+  .cv-cert-name span { font-family: var(--mono); font-size: 0.58rem; color: var(--green); margin-left: 6px; border: 1px solid var(--green); padding: 1px 6px; vertical-align: middle; }
+  .cv-cert-date { font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim); letter-spacing: 1px; }
+  .cv-lang-block { margin-bottom: 10px; }
+  .cv-lang-name { font-size: 0.88rem; color: var(--text); }
+  .cv-lang-level { font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim); letter-spacing: 1px; }
+  .cv-proj-link { display: flex; flex-direction: column; gap: 8px; }
+  .cv-proj-link a { font-family: var(--mono); font-size: 0.6rem; color: var(--accent); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; }
+  .cv-proj-link a:hover { color: #fff; }
+
+  @media print {
+    body > *:not(.cv-modal) { display: none !important; }
+    .cv-modal { position: static !important; opacity: 1 !important; pointer-events: all !important; background: #fff !important; }
+    .cv-toolbar { display: none !important; }
+    .cv-inner { padding: 20px !important; }
+    .cv-name { color: #000 !important; text-shadow: none !important; }
+    .cv-role-tag, .cv-sec-title, .cv-edu-grade, .cv-cert-name span { color: #006633 !important; }
+    .cv-sec-title { border-color: #ccc !important; }
+    .cv-summary-text, .cv-exp-list li, .cv-edu-degree, .cv-lang-name, .cv-cert-name { color: #222 !important; }
+    .cv-exp-title, .cv-edu-inst { color: #000 !important; }
+    .cv-exp-company, .cv-exp-date, .cv-edu-date, .cv-cert-date, .cv-lang-level, .cv-contact-item { color: #555 !important; }
+    .cv-exp-list li::before { color: #006633 !important; }
+    .cv-skill-tag { background: #f0f9f0 !important; border-color: #ccc !important; color: #006633 !important; }
+    .cv-proj-link a { color: #006633 !important; }
+    body::before { display: none !important; }
+    .grid-bg { display: none !important; }
+  }
+
+  @media (max-width: 700px) {
+    .cv-header { grid-template-columns: 1fr; }
+    .cv-contacts { text-align: left; }
+    .cv-body-grid { grid-template-columns: 1fr; }
+    .cv-toolbar { padding: 0 16px; }
+    .cv-inner { padding: 32px 20px 40px; }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
@@ -921,7 +1107,7 @@
     <div class="hero-btns">
       <a href="#portfolio" class="btn-primary">VIEW PROJECTS</a>
       <a href="#summary" class="btn-secondary">ABOUT ME</a>
-      <a href="cv.html" class="btn-secondary" target="_blank">VIEW / DOWNLOAD CV</a>
+      <button onclick="openCV()" class="btn-secondary">VIEW / DOWNLOAD CV</button>
     </div>
     <div class="hero-socials">
       <a href="https://github.com/franklinosuji2-afk" target="_blank">GITHUB</a>
@@ -1294,6 +1480,161 @@
   </div>
 </section>
 
+<!-- CV MODAL -->
+<div class="cv-modal" id="cvModal">
+  <div class="cv-toolbar">
+    <div class="cv-toolbar-left">FO.DEV / <span>CURRICULUM VITAE</span></div>
+    <div class="cv-toolbar-btns">
+      <button class="cv-btn-close" onclick="closeCV()">✕ CLOSE</button>
+      <button class="cv-btn-pdf" onclick="window.print()">⬇ DOWNLOAD PDF</button>
+    </div>
+  </div>
+  <div class="cv-inner">
+
+    <!-- CV HEADER -->
+    <div class="cv-header">
+      <div>
+        <div class="cv-name">FRANKLIN<br>CHINONSO OSUJI</div>
+        <div class="cv-role-tag">AWS CLOUD ENGINEER | DEVOPS SPECIALIST</div>
+      </div>
+      <div class="cv-contacts">
+        <div class="cv-contact-item">12051 Berlin, Germany</div>
+        <div class="cv-contact-item"><a href="tel:+4915259380812">+49 152 59380812</a></div>
+        <div class="cv-contact-item"><a href="mailto:franklin.osuji2@gmail.com">franklin.osuji2@gmail.com</a></div>
+        <div class="cv-contact-item"><a href="https://linkedin.com/in/franklin-osuji-a96003321" target="_blank">LinkedIn</a></div>
+        <div class="cv-contact-item"><a href="https://github.com/franklinosuji2-afk" target="_blank">GitHub</a></div>
+      </div>
+    </div>
+
+    <!-- CV BODY -->
+    <div class="cv-body-grid">
+      <!-- MAIN -->
+      <div>
+        <div class="cv-sec">
+          <div class="cv-sec-title">// PROFESSIONAL SUMMARY</div>
+          <p class="cv-summary-text">AWS-Certified Cloud &amp; DevOps Engineer specializing in Infrastructure as Code (Terraform) and Containerization (Docker/ECS). Bridging the gap between legacy IT and automated cloud environments, combining over 4 years of professional experience with 1,800 units of intensive DevOps training at DCI. Leveraging an Engineering background and professional sales expertise to deliver high-availability solutions that align technical excellence with measurable business value.</p>
+        </div>
+
+        <div class="cv-sec">
+          <div class="cv-sec-title">// WORK EXPERIENCE</div>
+
+          <div class="cv-exp-block">
+            <div class="cv-exp-top">
+              <div class="cv-exp-title">Independent Technology Consultant</div>
+              <div class="cv-exp-date">MAY 2023 – JUN 2024</div>
+            </div>
+            <div class="cv-exp-company">Freelance Cloud &amp; DevOps Engineer | Self-employed, Remote</div>
+            <ul class="cv-exp-list">
+              <li><strong>Cloud Provisioning:</strong> Automated cloud resource provisioning to streamline client onboarding, significantly improving time-to-market for new application deployments.</li>
+              <li><strong>Systems Integration:</strong> Led the design and deployment of key modules within Oracle E-Business Suite (EBS), driving adoption across 90% of the internal workforce.</li>
+              <li><strong>Technical Troubleshooting:</strong> Resolved complex infrastructure issues to maintain high system availability and performance.</li>
+            </ul>
+          </div>
+
+          <div class="cv-exp-block">
+            <div class="cv-exp-top">
+              <div class="cv-exp-title">E-commerce &amp; Digital Marketing Specialist</div>
+              <div class="cv-exp-date">MAR 2020 – APR 2023</div>
+            </div>
+            <div class="cv-exp-company">PAPER &amp; TEA | Berlin, Germany</div>
+            <ul class="cv-exp-list">
+              <li><strong>Process Automation:</strong> Streamlined operational efficiency by introducing Bash and Python scripting for routine system maintenance and reporting tasks.</li>
+              <li><strong>Infrastructure Optimization:</strong> Led the deployment of key internal modules, ensuring high system adoption and optimized user experience.</li>
+              <li><strong>Performance Metrics:</strong> Increased organic website traffic by 25% via targeted SEO and improved conversion rates by 15% through rigorous A/B testing protocols.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-sec">
+          <div class="cv-sec-title">// EDUCATION</div>
+          <div class="cv-edu-block">
+            <div class="cv-edu-inst">Digital Career Institute (DCI)</div>
+            <div class="cv-edu-degree">DevOps &amp; Cloud Engineering Program</div>
+            <div class="cv-edu-grade">Cloud Infrastructure &amp; Automation | CI/CD Development</div>
+            <div class="cv-edu-date">NOV 2024 – MAR 2026</div>
+          </div>
+          <div class="cv-edu-block">
+            <div class="cv-edu-inst">Federal University of Technology, Owerri (FUTO)</div>
+            <div class="cv-edu-degree">Bachelor of Engineering — Petroleum Engineering</div>
+            <div class="cv-edu-grade">Second Class Honours (Upper Division)</div>
+            <div class="cv-edu-date">JAN 2012 – SEP 2016</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div>
+        <div class="cv-sec">
+          <div class="cv-sec-title">// SKILLS</div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">CLOUD PLATFORMS</div>
+            <div class="cv-skill-tags">
+              <span class="cv-skill-tag">EC2</span><span class="cv-skill-tag">S3</span><span class="cv-skill-tag">VPC</span><span class="cv-skill-tag">IAM</span><span class="cv-skill-tag">Lambda</span><span class="cv-skill-tag">ECS</span><span class="cv-skill-tag">Fargate</span><span class="cv-skill-tag">RDS</span><span class="cv-skill-tag">CloudFormation</span><span class="cv-skill-tag">Route 53</span>
+            </div>
+          </div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">INFRA AS CODE</div>
+            <div class="cv-skill-tags"><span class="cv-skill-tag">Terraform</span><span class="cv-skill-tag">CloudFormation</span></div>
+          </div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">CONTAINERIZATION</div>
+            <div class="cv-skill-tags"><span class="cv-skill-tag">Docker</span><span class="cv-skill-tag">ECS</span><span class="cv-skill-tag">Fargate</span></div>
+          </div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">CI/CD & AUTOMATION</div>
+            <div class="cv-skill-tags"><span class="cv-skill-tag">Jenkins</span><span class="cv-skill-tag">GitHub Actions</span><span class="cv-skill-tag">CI/CD Pipelines</span></div>
+          </div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">PROGRAMMING</div>
+            <div class="cv-skill-tags"><span class="cv-skill-tag">Python</span><span class="cv-skill-tag">Bash</span><span class="cv-skill-tag">SQL</span></div>
+          </div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">SYSTEMS & MONITORING</div>
+            <div class="cv-skill-tags"><span class="cv-skill-tag">Linux Admin</span><span class="cv-skill-tag">CloudWatch</span><span class="cv-skill-tag">Incident Response</span></div>
+          </div>
+          <div class="cv-skill-group">
+            <div class="cv-skill-group-name">DATABASES</div>
+            <div class="cv-skill-tags"><span class="cv-skill-tag">RDS PostgreSQL</span><span class="cv-skill-tag">DynamoDB</span></div>
+          </div>
+        </div>
+
+        <div class="cv-sec">
+          <div class="cv-sec-title">// CERTIFICATIONS</div>
+          <div class="cv-cert-block">
+            <div class="cv-cert-name">AWS Cloud Practitioner <span>ACTIVE</span></div>
+            <div class="cv-cert-date">AUG 2025 — AUG 2028</div>
+          </div>
+          <div class="cv-cert-block">
+            <div class="cv-cert-name">2x DCI Professional Training Certificates</div>
+            <div class="cv-cert-date">NOV 2024 — MAR 2026</div>
+          </div>
+        </div>
+
+        <div class="cv-sec">
+          <div class="cv-sec-title">// LANGUAGES</div>
+          <div class="cv-lang-block">
+            <div class="cv-lang-name">English</div>
+            <div class="cv-lang-level">NATIVE</div>
+          </div>
+          <div class="cv-lang-block">
+            <div class="cv-lang-name">German</div>
+            <div class="cv-lang-level">B1/B2 — PROFESSIONAL WORKING PROFICIENCY</div>
+          </div>
+        </div>
+
+        <div class="cv-sec">
+          <div class="cv-sec-title">// PROJECTS</div>
+          <div class="cv-proj-link">
+            <a href="https://github.com/franklinosuji2-afk/AWS-ECS-CI-CD-infrastructure-" target="_blank">AWS ECS CI/CD Infrastructure →</a>
+            <a href="https://github.com/franklinosuji2-afk/cloud-resume-tracker" target="_blank">Cloud Resume Tracker →</a>
+            <a href="https://github.com/franklinosuji2-afk/serverless-free-tier-api" target="_blank">Serverless Free Tier API →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p>© Franklin Chinonso Osuji. All rights reserved.</p>
@@ -1301,6 +1642,17 @@
 </footer>
 
 <script>
+  // CV Modal
+  function openCV() {
+    document.getElementById('cvModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCV() {
+    document.getElementById('cvModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCV(); });
+
   // Typing effect for hero init text
   const initEl = document.querySelector('.hero-init');
   const txt = '[ SYSTEM ONLINE ]';
