@@ -1,8 +1,8 @@
-🌐 Portfolio — Franklin Chinonso Osuji
+🌐 Portfolio Franklin Chinonso Osuji
 
 A modern developer portfolio showcasing my skills as a Cloud & DevOps Engineer, focused on building scalable infrastructure, automation pipelines, and production-ready systems.
 
-This portfolio is designed to communicate not just what I build — but how I think as an engineer.
+This portfolio is designed to communicate not just what I build but how I think as an engineer.
 
 🚀 Live Demo
 
